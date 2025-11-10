@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // Set up our call object using a consistent ID
     final call = StreamVideo.instance.makeCall(
       callType: StreamCallType.liveStream(),
-      id: 'livestream-b941303c-9953-49c6-8ce4-87eff5835688', // Use the same ID as the host
+      id: 'e0883axUKOXptlkrBsrYd', // Use the same ID as the host
     );
 
     final result = await call.getOrCreate(); // Ensure the call object exists

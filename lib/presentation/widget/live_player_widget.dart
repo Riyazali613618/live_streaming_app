@@ -90,7 +90,8 @@ class _LivePlayerWidgetState extends State<LivePlayerWidget> {
 
     // Use StreamCallContainer and StreamBuilder for custom rendering
     return Stack(
-      children: [StreamCallContainer(
+      children: [
+        StreamCallContainer(
           call: _call,
           callContentWidgetBuilder: (innerContext, call) {
             return StreamBuilder<CallState>(
