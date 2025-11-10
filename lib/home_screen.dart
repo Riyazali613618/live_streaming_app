@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stream_video_flutter/stream_video_flutter.dart';
 
+import 'livestream_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -20,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 16,
           children: [
-/*
             ElevatedButton(
               onPressed: createLoadingText == null
                   ? () async {
@@ -33,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   : null,
               child: Text(createLoadingText ?? 'Create a Livestream'),
             ),
-*/
             ElevatedButton(
               onPressed: viewLoadingText == null
                   ? () {
@@ -52,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late final Call call;
 
-/*
   Future<void> _createLivestream() async {
     // Set up our call object
     call = StreamVideo.instance.makeCall(
@@ -107,7 +106,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-*/
 
   // ... inside _HomeScreenState ...
 
@@ -115,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // Set up our call object using a consistent ID
     final call = StreamVideo.instance.makeCall(
       callType: StreamCallType.liveStream(),
-      id: 'e0883axUKOXptlkrBsrYd', // Use the same ID as the host
+      id: 'livestream-b941303c-9953-49c6-8ce4-87eff5835688', // Use the same ID as the host
     );
 
     final result = await call.getOrCreate(); // Ensure the call object exists

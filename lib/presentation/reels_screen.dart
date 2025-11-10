@@ -46,10 +46,12 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
           return PageView.builder(
             controller: _pageController,
             scrollDirection: Axis.vertical,
+            pageSnapping: true,
             itemCount: streams.length,
             onPageChanged: (index) {
               setState(() {
-                _currentPageIndex = index; // Update index to trigger play/stop logic
+                _currentPageIndex =
+                    index; // Update index to trigger play/stop logic
               });
             },
             itemBuilder: (context, index) {

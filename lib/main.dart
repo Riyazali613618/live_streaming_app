@@ -19,6 +19,7 @@ Future<void> main() async {
   /// Replace the values below with your own Stream API keys and sample user data if you want to test your Stream app.
   /// For development, you can generate user tokens with our online tool: https://getstream.io/chat/docs/flutter-dart/tokens_and_authentication/#manually-generating-tokens
   /// For production apps, generate tokens on your server rather than in the client.
+/*
   StreamVideo(
     'mmhfdzb5evj2',
     user: const User(
@@ -27,19 +28,25 @@ Future<void> main() async {
     userToken:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3Byb250by5nZXRzdHJlYW0uaW8iLCJzdWIiOiJ1c2VyL0FzcGlyaW5nX05laWdoYm9yIiwidXNlcl9pZCI6IkFzcGlyaW5nX05laWdoYm9yIiwidmFsaWRpdHlfaW5fc2Vjb25kcyI6NjA0ODAwLCJpYXQiOjE3NjI1ODE0MDcsImV4cCI6MTc2MzE4NjIwN30.A1jFSc1PEigS39rlZLjgaaQn25gl6PBP9SMN9jq5nu0',
   );
+*/
 
-  runApp(const MaterialApp(home: HomeScreen()));
 
-  //TODO START AND VIEW DUMMY STREAM////////////////////////////////////////////
-  /*StreamVideo(
-    'mmhfdzb5evj2',
+
+  StreamVideo(
+    '23xersqfz4j9',
     user: const User(
-      info: UserInfo(name: 'Shahbaz', id: 'Aspiring_Neighbor', role: 'user'),
+      info: UserInfo(name: 'Shahbaz', id: '220e402f-02cb-48cb-8951-bb7032d8d83e', role: 'user'),
     ),
     userToken:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3Byb250by5nZXRzdHJlYW0uaW8iLCJzdWIiOiJ1c2VyL0FzcGlyaW5nX05laWdoYm9yIiwidXNlcl9pZCI6IkFzcGlyaW5nX05laWdoYm9yIiwidmFsaWRpdHlfaW5fc2Vjb25kcyI6NjA0ODAwLCJpYXQiOjE3NjI1ODE0MDcsImV4cCI6MTc2MzE4NjIwN30.A1jFSc1PEigS39rlZLjgaaQn25gl6PBP9SMN9jq5nu0',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjIwZTQwMmYtMDJjYi00OGNiLTg5NTEtYmI3MDMyZDhkODNlIiwiZXhwIjoxNzYyODU0MjIxLCJpYXQiOjE3NjI3Njc4MjB9.noQ3I-N55Dv1skZEbhNe9ucWnVZCqOfdT34_rfqM0yA',
   );
+  //runApp(const MaterialApp(home: HomeScreen()));
 
-   runApp(const MaterialApp(home: HomeScreen()));
- */
+  runApp(
+    const ProviderScope(
+      child: MaterialApp(
+        home: ReelsScreen(),
+      ),
+    ),
+  );
 }

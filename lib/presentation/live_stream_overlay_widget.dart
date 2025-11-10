@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:live_stream_chat/domain/entity/live_stream_entity.dart';
+import 'package:stream_video/stream_video.dart';
 
 class LiveStreamOverlayWidget extends ConsumerWidget {
-  const LiveStreamOverlayWidget({super.key});
+  final int participantsCount;
+  final String hostName;
+
+  const LiveStreamOverlayWidget({
+    super.key,
+    required this.participantsCount,
+    required this.hostName,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // We use Stack to layer UI elements over the full screen video.
-    return const Stack(
+    return Stack(
       children: [
         // --- 1. Top Section (Header, Live Count, Exit) ---
-        _TopHeaderControls(),
+        _TopHeaderControls(participantsCount,hostName),
 
         // --- 2. Side Buttons (Like, Share, More) ---
         _SideButtons(),
@@ -27,7 +36,10 @@ class LiveStreamOverlayWidget extends ConsumerWidget {
 
 // --- 1. Top Header Controls (Live Count, Host Info, Exit) ---
 class _TopHeaderControls extends StatelessWidget {
-  const _TopHeaderControls();
+  final int participantsCount;
+  final String hostName;
+
+  const _TopHeaderControls(this.participantsCount, this.hostName);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +57,7 @@ class _TopHeaderControls extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.5),
+              color: Color(0x33FFFFFF),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -62,8 +74,8 @@ class _TopHeaderControls extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Text(
-                          'Surbhi Tyagi', // 1. Username
+                         Text(
+                          "$hostName", // 1. Username
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -102,7 +114,7 @@ class _TopHeaderControls extends StatelessWidget {
                   color: Colors.white.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(
                       Icons.remove_red_eye_outlined,
@@ -111,7 +123,7 @@ class _TopHeaderControls extends StatelessWidget {
                     ),
                     SizedBox(width: 4),
                     Text(
-                      '30k', // Live User Count
+                      "$participantsCount", // 1. Username
                       style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ],

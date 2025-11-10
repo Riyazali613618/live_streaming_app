@@ -1,9 +1,10 @@
 // data/repositories/live_stream_repository.dart
 import '../../domain/entity/live_stream_entity.dart';
+import '../model/live_stream_model.dart';
 import '../remote/live_stream_api.dart';
 
 abstract class LiveStreamRepository {
-  Future<List<LiveStreamEntity>> getLiveStreams();
+  Future<List<Data>> getLiveStreams();
 }
 
 class LiveStreamRepositoryImpl implements LiveStreamRepository {
@@ -12,7 +13,7 @@ class LiveStreamRepositoryImpl implements LiveStreamRepository {
   LiveStreamRepositoryImpl(this._api);
 
   @override
-  Future<List<LiveStreamEntity>> getLiveStreams() async {
+  Future<List<Data>> getLiveStreams() async {
     return _api.fetchStreams();
   }
 }

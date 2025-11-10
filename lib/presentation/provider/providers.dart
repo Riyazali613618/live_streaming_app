@@ -1,9 +1,10 @@
 // presentation/providers/providers.dart
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:live_stream_chat/data/model/live_stream_model.dart';
+
 import '../../data/remote/live_stream_api.dart';
 import '../../data/repository/live_stream_repository.dart';
-import '../../domain/entity/live_stream_entity.dart';
 import '../../domain/usecase/get_live_streams_use_case.dart';
 import 'live_stream_notifier.dart';
 
@@ -29,5 +30,5 @@ final getLiveStreamsUseCaseProvider = Provider(
 final reelsNotifierProvider =
     StateNotifierProvider<
       LiveStreamNotifier,
-      AsyncValue<List<LiveStreamEntity>>
+      AsyncValue<List<Data>>
     >((ref) => LiveStreamNotifier(ref.watch(getLiveStreamsUseCaseProvider)));

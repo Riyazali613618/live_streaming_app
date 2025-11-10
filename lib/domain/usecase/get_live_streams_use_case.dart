@@ -1,5 +1,6 @@
 // domain/use_cases/get_live_streams_use_case.dart
 
+import '../../data/model/live_stream_model.dart';
 import '../../data/repository/live_stream_repository.dart';
 import '../entity/live_stream_entity.dart';
 
@@ -8,7 +9,7 @@ class GetLiveStreamsUseCase {
 
   GetLiveStreamsUseCase(this._repository);
 
-  Future<List<LiveStreamEntity>> call() async {
+  Future<List<Data>> call() async {
     return _repository.getLiveStreams();
   }
 }
