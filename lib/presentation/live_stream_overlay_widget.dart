@@ -3,12 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:live_stream_chat/domain/entity/live_stream_entity.dart';
 import 'package:stream_video/stream_video.dart';
 
+import '../custom_vedio_render.dart';
+import '../home_screen.dart';
+
 class LiveStreamOverlayWidget extends ConsumerWidget {
   final int participantsCount;
   final String hostName;
-
+  final Call call;
+  final StageActionListener? stageActionListener; // Added property
   const LiveStreamOverlayWidget({
     super.key,
+    required this.stageActionListener,
+    required this.call,
     required this.participantsCount,
     required this.hostName,
   });
@@ -18,8 +24,7 @@ class LiveStreamOverlayWidget extends ConsumerWidget {
     // We use Stack to layer UI elements over the full screen video.
     return Stack(
       children: [
-        // --- 1. Top Section (Header, Live Count, Exit) ---
-        _TopHeaderControls(participantsCount,hostName),
+        _TopHeaderControls(participantsCount, hostName),
 
         // --- 2. Side Buttons (Like, Share, More) ---
         _SideButtons(),
@@ -28,7 +33,7 @@ class LiveStreamOverlayWidget extends ConsumerWidget {
         _ChatListing(),
 
         // --- 4. Bottom Section (Chat Input & Action Button) ---
-        _BottomControls(),
+        _BottomControls(call: call, listener: stageActionListener!),
       ],
     );
   }
@@ -74,7 +79,7 @@ class _TopHeaderControls extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                         Text(
+                        Text(
                           "$hostName", // 1. Username
                           style: TextStyle(
                             color: Colors.white,
@@ -114,7 +119,7 @@ class _TopHeaderControls extends StatelessWidget {
                   color: Colors.white.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child:  Row(
+                child: Row(
                   children: [
                     Icon(
                       Icons.remove_red_eye_outlined,
@@ -295,12 +300,15 @@ class _ChatListing extends StatelessWidget {
 
 // --- 4. Chat Input Box and Book a Session Button ---
 class _BottomControls extends StatelessWidget {
-  const _BottomControls();
+  final Call call;
+  final StageActionListener listener;
+
+  const _BottomControls({required this.call, required this.listener});
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 10,
+      bottom: 40,
       left: 16,
       right: 16,
       child: Row(
@@ -362,12 +370,12 @@ class _BottomControls extends StatelessWidget {
           SizedBox(
             height: 44,
             child: ElevatedButton.icon(
-              onPressed: () {
-                // Implement booking logic
+              onPressed: () async {
+                listener.onClick(isAudioOnly: true);
               },
               icon: const Icon(Icons.call, color: Colors.white, size: 20),
               label: const Text(
-                'Book a Session',
+                'Join Video Call',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

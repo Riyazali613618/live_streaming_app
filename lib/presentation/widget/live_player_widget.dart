@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:live_stream_chat/data/model/live_stream_model.dart';
 import 'package:stream_video_flutter/stream_video_flutter.dart';
 
-import '../../domain/entity/live_stream_entity.dart';
 import '../live_stream_overlay_widget.dart';
 
 class LivePlayerWidget extends StatefulWidget {
@@ -30,8 +29,8 @@ class _LivePlayerWidgetState extends State<LivePlayerWidget> {
     super.initState();
     // 1. Initialize the Call object
     _call = StreamVideo.instance.makeCall(
-      callType: StreamCallType.liveStream(),
-      id: widget.stream.getStreamLivestreamId??"", // Unique Stream ID
+      callType: StreamCallType.defaultType(),
+      id: /*widget.stream.getStreamLivestreamId??*/"Enchanting_Lobster", // Unique Stream ID
     );
     // 2. Initial check for visibility
     if (widget.isCurrentlyVisible) {
@@ -59,8 +58,8 @@ class _LivePlayerWidgetState extends State<LivePlayerWidget> {
     await _call.getOrCreate();
     await _call.join(
       connectOptions: CallConnectOptions(
-        camera: TrackOption.disabled(),
-        microphone: TrackOption.disabled(),
+        camera: TrackOption.enabled(),
+        microphone: TrackOption.enabled(),
       ),
     );
 
@@ -92,14 +91,6 @@ class _LivePlayerWidgetState extends State<LivePlayerWidget> {
     // Use StreamCallContainer and StreamBuilder for custom rendering
     return LivestreamPlayer(
       call: _call,
-      showParticipantCount: false,
-      startInFullscreenMode: true,
-      livestreamControlsBuilder: (context, call, isFullScreen) {
-        return LiveStreamOverlayWidget(
-          participantsCount: call.state.value.callParticipants.length,
-          hostName: call.state.value.createdByUser.name ?? "",
-        );
-      },
     );
   }
 
@@ -122,10 +113,10 @@ class _LivePlayerWidgetState extends State<LivePlayerWidget> {
             ),
           ),
         ),
-        LiveStreamOverlayWidget(
+      /*  LiveStreamOverlayWidget(
           participantsCount: 0,
           hostName:  "",
-        )
+        )*/
       ],
     );
   }

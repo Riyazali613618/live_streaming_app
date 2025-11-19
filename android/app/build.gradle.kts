@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.live_stream_chat"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
